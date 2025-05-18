@@ -5,10 +5,9 @@ const mysql = require('mysql2/promise');
 const { createClient } = require('webdav');
 const multer = require('multer');
 const path = require('path');
-const config = require('./config');
 
 const app = express();
-const port = config.server.port;
+const port = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
@@ -18,17 +17,26 @@ app.use(express.json());
 const upload = multer({
   storage: multer.memoryStorage(),
   limits: {
-    fileSize: config.server.uploadLimit,
+    fileSize: 200 * 1024 * 1024, // 200MB limit
   },
 });
 
 // Database connection
-const pool = mysql.createPool(config.database);
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.DB_NAME,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
+});
 
 // WebDAV client
-const webdavClient = createClient(config.webdav.url, {
-  username: config.webdav.username,
-  password: config.webdav.password,
+const webdavClient = createClient(process.env.WEBDAV_URL, {
+  username: process.env.WEBDAV_USERNAME,
+  password: process.env.WEBDAV_PASSWORD,
 });
 
 // Routes

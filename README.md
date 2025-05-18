@@ -1,60 +1,65 @@
 # WebDAV Music Player
 
-Веб-приложение для воспроизведения музыки с WebDAV сервера, развернутое на Cloudflare Workers & Pages.
+Веб-приложение для воспроизведения музыки с WebDAV сервера.
 
 ## Функциональность
 
 - Воспроизведение аудиофайлов с WebDAV сервера
 - Загрузка новых треков через веб-интерфейс
-- Хранение плейлиста в базе данных Cloudflare D1
+- Хранение плейлиста в базе данных MySQL
 - Современный интерфейс на React + Material-UI
 
 ## Технологии
 
 - Frontend: React, Material-UI
-- Backend: Cloudflare Workers
-- Database: Cloudflare D1
+- Backend: Node.js, Express
+- Database: MySQL
 - Storage: WebDAV (Mail.ru Cloud)
 
-## Установка и запуск
+## Быстрый старт
 
-1. Клонируйте репозиторий:
-```bash
-git clone https://github.com/your-username/webdav-player.git
-cd webdav-player
-```
-
-2. Установите зависимости:
+1. Установите зависимости:
 ```bash
 npm install
-cd client
-npm install
+cd client && npm install
 ```
 
-3. Настройте переменные окружения:
-- Создайте файл `.env` в корневой директории
-- Добавьте необходимые переменные окружения (см. `.env.example`)
-
-4. Разверните на Cloudflare:
+2. Запустите приложение:
 ```bash
-# Развертывание Worker
-wrangler deploy
+npm run dev:full
+```
 
-# Развертывание фронтенда
-cd client
-npm run build
-wrangler pages deploy build
+Приложение будет доступно по адресу: http://localhost:3000
+
+## Настройка
+
+Создайте файл `.env` в корневой директории со следующими параметрами:
+
+```env
+# Database configuration
+DB_HOST=your_db_host
+DB_PORT=3306
+DB_NAME=your_db_name
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
+
+# WebDAV configuration
+WEBDAV_URL=your_webdav_url
+WEBDAV_USERNAME=your_webdav_username
+WEBDAV_PASSWORD=your_webdav_password
+
+# Server configuration
+PORT=5000
 ```
 
 ## Структура проекта
 
 ```
-webdav-player/
+musicquiz/
 ├── client/                 # React frontend
 │   ├── public/
 │   └── src/
-├── worker.js              # Cloudflare Worker
-├── wrangler.toml          # Worker конфигурация
+├── server.js              # Express server
 ├── schema.sql            # SQL схема базы данных
 └── package.json
 ```

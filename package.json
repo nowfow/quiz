@@ -1,7 +1,7 @@
 {
-  "name": "webdav-player",
+  "name": "musicquiz",
   "version": "1.0.0",
-  "description": "WebDAV music player with external database",
+  "description": "WebDAV music player",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
