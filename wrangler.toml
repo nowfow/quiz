@@ -1,4 +1,4 @@
-name = "webdav-player-api"
+name = "musicquiz"
 main = "worker.js"
 compatibility_date = "2024-01-01"
 
@@ -10,4 +10,7 @@ WEBDAV_PASSWORD = "FpeY7pxjVeQJEJpEjaar"
 [[d1_databases]]
 binding = "DB"
 database_name = "webdav_player"
-database_id = "your-database-id" 
+database_id = "your-database-id"
+
+[site]
+bucket = "./build" 

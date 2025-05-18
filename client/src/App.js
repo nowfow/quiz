@@ -22,7 +22,7 @@ import {
 import axios from 'axios';
 
 // Используем URL вашего Cloudflare Worker
-const API_URL = 'https://webdav-player-api.your-username.workers.dev';
+const API_URL = 'https://musicquiz.your-username.workers.dev';
 
 function App() {
   const [playlist, setPlaylist] = useState([]);
